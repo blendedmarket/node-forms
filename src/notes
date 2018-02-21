@@ -1,0 +1,2 @@
+Must create another hidden input for the google analytics code
+<input type="hidden" name="_csrf" value="<%= csrfToken %>">
