@@ -10,8 +10,8 @@ const flash = require('express-flash')
 const helmet = require('helmet')
 const csrf = require('csurf')
 const routes = require('./routes')
+// const uuid = require('uuid/v4') //n8 uuid added
 const app = express()
-
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -31,13 +31,10 @@ const middlewares = [
     cookie: { maxAge: 60000 }
   }),
   flash(),
-  csrf({ cookie: true })
-
+  csrf({ cookie: true }),
 ]
 app.use(middlewares)
-
 app.use('/', routes)
-
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!")
 })
@@ -48,5 +45,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(5555, () => {
-  console.log(`App running at http://localhost:3000`)
+  console.log(`App running at http://localhost:5555`)
 })

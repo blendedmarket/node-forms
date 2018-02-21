@@ -1,2 +1,7 @@
 Must create another hidden input for the google analytics code
 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+
+This system uses the npm UUID as a custom client id generator.
+
+The second iteration will use https://www.npmjs.com/package/universal-analytics
