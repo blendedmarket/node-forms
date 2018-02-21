@@ -7,16 +7,14 @@ e-sql.com
 
 ## Installation Steps (if applicable)
 
-1. Clone repo
+1. Clone repo by running git to this repo: https://github.com/blendedmarket/node-forms.git
 2. Run `npm install`
 3. Run `npm start`
-4. Visit http://localhost:3000/
+4. Visit http://localhost:5555/
 
 ## License
 
 The MIT License (MIT)
-
-Copyright (c) 2018 SitePoint
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
