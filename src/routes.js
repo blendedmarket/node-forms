@@ -5,23 +5,34 @@ const { check, validationResult } = require('express-validator/check')
 const { matchedData } = require('express-validator/filter')
 const uuid = require('uuid/v4') //n8 uuid added
 
+var sessionID;
+// const ua = require('universal-analytics');
+// const visitor = ua('UA-114500412-1');
 router.get('/', (req, res) => {
-  res.render('index')
-})
+  sessionID = uuid();
+  res.render('index', {
+  })
 
-// router.get('/contact', (req, res) => {
-//   res.render('contact')
-// })
+  // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
+});
+
+router.get('/thanks', (req, res) => {
+  res.render('thanks', {
+    formID: sessionID,
+  })
+  // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
+});
 
 router.get('/contact', (req, res) => {
+  // visitor.pageview("/contact", "http://e-sql.com/contact", "Contact Form").send();
   res.render('contact', {
     data: {},
     errors: {},
     csrfToken: req.csrfToken(),
-    uuid: uuid() //n8 uuid added
+    uuid: sessionID, //n8 uuid added
+    formID: "contact"
   })
 })
-
 
 router.post('/contact', [
   check('message')
@@ -35,22 +46,26 @@ router.post('/contact', [
     .normalizeEmail()
   ], (req, res) => {
     const errors = validationResult(req)
+    if(errors.isEmpty()){
+      // console.log("Errors is empty : ", errors.isEmpty())
+      // visitor.event("Event Category", "Event Action").send()
+    }
     if (!errors.isEmpty()) {
       return res.render('contact', {
         data: req.body,
         errors: errors.mapped(),
         csrfToken: req.csrfToken(),
-        uuid: req.uuid //n8 uuid added
+        uuid: req.uuid, //n8 uuid added
+        formID: "contact1"
       })
     }
 
     const data = matchedData(req)
-    console.log('Sanitized: ', data)
-    // console.log('res: ', res) //n8 uuid added
-    console.log('req: ', req)
+    console.log('Cleaned up data: ', data)
+    // console.log('req: ', req)
 
-    req.flash('success', 'Thanks for the message! I‘ll be in touch :)')
-    res.redirect('/')
+    req.flash('success', 'Submit is many successes! :)')
+    res.redirect('/thanks')
   })
 
 module.exports = router

@@ -1,0 +1,8 @@
+<!-- views/thanks.ejs -->
+<% if (messages.success) { %>
+  <div class="flash flash-success"><%= messages.success %></div>
+<% } %>
+
+<h3>You are now a number in our analytics!</h3>
+<input type="hidden" name="_formID" value="<%= formID %>">
+<div><%= formID %></div>

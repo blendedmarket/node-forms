@@ -16,6 +16,7 @@
   <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="hidden" name="_uuid" value="<%= uuid %>">
+    <input type="hidden" name="_formID" value="<%= formID %>">
     <label for="message">Message</label>
     <textarea class="input" id="message" name="message" rows="4" autofocus><%= data.message %></textarea>
     <% if (errors.message) { %>

@@ -10,7 +10,6 @@ const flash = require('express-flash')
 const helmet = require('helmet')
 const csrf = require('csurf')
 const routes = require('./routes')
-// const uuid = require('uuid/v4') //n8 uuid added
 const app = express()
 
 app.set('views', path.join(__dirname, 'views'))
