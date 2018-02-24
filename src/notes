@@ -5,3 +5,9 @@ Must create another hidden input for the google analytics code
 This system uses the npm UUID as a custom client id generator.
 
 The second iteration will use https://www.npmjs.com/package/universal-analytics
+
+
+Let's use dataLayer.
+1. Test to see if a static dataLayer is passed to GTM
+2. Setup a new layout that puts a dataLayer = [{}] in the head before the GTM tag
+3. Move

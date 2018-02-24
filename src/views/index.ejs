@@ -1,7 +1,17 @@
+<head>
+  <title> Formulator3000 </title>
+  <link rel="stylesheet" href="/style.css" type="text/css" />
+  <%- include GTM %>
+</head>
 <!-- views/index.ejs -->
-<% if (messages.success) { %>
-  <div class="flash flash-success"><%= messages.success %></div>
-<% } %>
+<body>
 
-<h1>Fill out a client form below to be tracked...</h1>
-<a href="./contact">Form 1</a>
+  <%- include GTMNoScript %>
+
+  <% if (messages.success) { %>
+    <div class="flash flash-success"><%= messages.success %></div>
+  <% } %>
+
+  <h1>Fill out a client form below to be tracked...</h1>
+  <a href="./contact">Form 1</a>
+</body>

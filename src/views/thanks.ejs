@@ -1,8 +1,18 @@
 <!-- views/thanks.ejs -->
-<% if (messages.success) { %>
-  <div class="flash flash-success"><%= messages.success %></div>
-<% } %>
+<head>
+  <meta charset="utf-8">
+  <title>Thanks!</title>
+  <link rel="stylesheet" href="/style.css" type="text/css" />
+  <%- include('GTM.ejs') %>
+</head>
+<body>
+  <% if (messages.success) { %>
+    <div class="flash flash-success"><%= messages.success %></div>
+  <% } %>
+  <%- include GTMNoScript %>
 
-<h3>You are now a number in our analytics!</h3>
-<input type="hidden" name="_formID" value="<%= formID %>">
-<div><%= formID %></div>
+  <h3>You are now a number in our analytics!</h3>
+  <h4>Form Name (Unique): <%= formIDCustom %></h4>
+  <h5>Session ID: <%= sessionID %></h5>
+
+</body>

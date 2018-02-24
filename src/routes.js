@@ -1,4 +1,5 @@
 
+//standard routes file for stuff
 const express = require('express')
 const router = express.Router()
 const { check, validationResult } = require('express-validator/check')
@@ -9,8 +10,19 @@ var sessionID;
 // const ua = require('universal-analytics');
 // const visitor = ua('UA-114500412-1');
 router.get('/', (req, res) => {
-  sessionID = uuid();
   res.render('index', {
+  })
+
+  // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
+});
+
+router.get('/mypage', (req, res) => {
+  if (!sessionID){
+    sessionID = uuid();
+  }
+  res.render('mypage', {
+    formIDCustom: '100',
+    tomisID: sessionID
   })
 
   // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
@@ -18,19 +30,23 @@ router.get('/', (req, res) => {
 
 router.get('/thanks', (req, res) => {
   res.render('thanks', {
-    formID: sessionID,
+    formIDCustom: "thanks",
+    sessionID: sessionID
+
   })
   // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
 });
 
 router.get('/contact', (req, res) => {
+  sessionID = uuid();
   // visitor.pageview("/contact", "http://e-sql.com/contact", "Contact Form").send();
   res.render('contact', {
     data: {},
     errors: {},
     csrfToken: req.csrfToken(),
-    uuid: sessionID, //n8 uuid added
-    formID: "contact"
+    uuid: req.uuid, //n8 uuid added
+    formIDCustom: "contact",
+    sessionID: sessionID
   })
 })
 
@@ -56,7 +72,8 @@ router.post('/contact', [
         errors: errors.mapped(),
         csrfToken: req.csrfToken(),
         uuid: req.uuid, //n8 uuid added
-        formID: "contact1"
+        formIDCustom: "contact_fail",
+        sessionID: sessionID
       })
     }
 

@@ -1,4 +1,13 @@
 <!-- views/contact.ejs -->
+<head>    <meta charset="utf-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <%- include('GTM.ejs') %>
+</head>
+
+<script>  var dataLayer = [{'sessionUUID':  '<%= sessionID %>', 'formIDCustom': "<%= formIDCustom %>" }] </script>
+<%- include GTMNoScript %>
+
 <div class="form-header">
   <% if (Object.keys(errors).length === 0) { %>
     <h2>Send us a message</h2>
@@ -11,12 +20,11 @@
     </ul>
   <% } %>
 </div>
-
-<form method="post" action="/contact" novalidate>
+<form id="My_Form" class="contactForm" method="post" action="/contact" novalidate>
   <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="hidden" name="_uuid" value="<%= uuid %>">
-    <input type="hidden" name="_formID" value="<%= formID %>">
+    <input type="hidden" name="_formIDCustom" value="<%= formIDCustom %>">
     <label for="message">Message</label>
     <textarea class="input" id="message" name="message" rows="4" autofocus><%= data.message %></textarea>
     <% if (errors.message) { %>
@@ -31,6 +39,6 @@
     <% } %>
   </div>
   <div class="form-actions">
-    <button class="btn" type="submit">Send</button>
+    <button class="btn" type="submit" >Send</button>
   </div>
 </form>
