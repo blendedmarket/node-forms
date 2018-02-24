@@ -1,0 +1,26 @@
+
+  <head>
+    <meta charset="utf-8">
+    <title>My_Page</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+
+    <script>
+// dataLayer goes here
+dataLayer = [{'formIDCustom': "<%= formIDCustom %>",
+              'sessionUUID': "<%= tomisID %>",
+            }]
+    </script>
+    <!-- Google Tag Manager -->
+    <%- include('GTM.ejs') %>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <title>My_Page</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+</head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <%- include GTMNoScript %>
+    <!-- End Google Tag Manager (noscript) -->
+    <h2>Watt the funk!</h2>
+  </body>
