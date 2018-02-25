@@ -4,14 +4,9 @@
     <title>My_Page</title>
     <link rel="stylesheet" href="/style.css" type="text/css" />
 
-    <script>
-// dataLayer goes here
-dataLayer = [{'formIDCustom': "<%= formIDCustom %>",
-              'sessionUUID': "<%= tomisID %>",
-            }]
-    </script>
     <!-- Google Tag Manager -->
-    <%- include('GTM.ejs') %>
+    <%- include('head/dataLayer'); %>
+    <%- include('head/GTM'); %>
     <!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <title>My_Page</title>
@@ -20,7 +15,7 @@ dataLayer = [{'formIDCustom': "<%= formIDCustom %>",
 
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <%- include GTMNoScript %>
+    <%- include('head/GTMNoScript'); %>
     <!-- End Google Tag Manager (noscript) -->
-    <h2>Watt the funk!</h2>
+    <h2>Welcome to the thunder dome.</h2>
   </body>

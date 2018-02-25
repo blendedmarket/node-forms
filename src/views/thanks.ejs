@@ -3,16 +3,15 @@
   <meta charset="utf-8">
   <title>Thanks!</title>
   <link rel="stylesheet" href="/style.css" type="text/css" />
-  <%- include('GTM.ejs') %>
+  <%- include('head/dataLayer'); %>
+  <%- include('head/GTM'); %>
 </head>
 <body>
+  <%- include head/GTMNoScript %>
   <% if (messages.success) { %>
     <div class="flash flash-success"><%= messages.success %></div>
+    <h3>You are now a number in our analytics!</h3>
+    <h4>Form Name (Unique): <%= formIDCustom %></h4>
+    <h5>Session ID: <%= sessionID %></h5>
   <% } %>
-  <%- include GTMNoScript %>
-
-  <h3>You are now a number in our analytics!</h3>
-  <h4>Form Name (Unique): <%= formIDCustom %></h4>
-  <h5>Session ID: <%= sessionID %></h5>
-
 </body>

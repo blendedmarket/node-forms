@@ -1,12 +1,12 @@
 <head>
   <title> Formulator3000 </title>
   <link rel="stylesheet" href="/style.css" type="text/css" />
-  <%- include GTM %>
+  <%- include('head/GTM'); %>
 </head>
 <!-- views/index.ejs -->
 <body>
 
-  <%- include GTMNoScript %>
+  <%- include('head/GTMNoScript'); %>
 
   <% if (messages.success) { %>
     <div class="flash flash-success"><%= messages.success %></div>

@@ -6,11 +6,13 @@ const { check, validationResult } = require('express-validator/check')
 const { matchedData } = require('express-validator/filter')
 const uuid = require('uuid/v4') //n8 uuid added
 
-var sessionID;
-// const ua = require('universal-analytics');
-// const visitor = ua('UA-114500412-1');
+var sessionID = 'none';
+const ua = require('universal-analytics');
+const visitor = ua('UA-114500412-1');
 router.get('/', (req, res) => {
   res.render('index', {
+    formIDCustom: 'index',
+    sessionID: sessionID
   })
 
   // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
@@ -22,7 +24,7 @@ router.get('/mypage', (req, res) => {
   }
   res.render('mypage', {
     formIDCustom: '100',
-    tomisID: sessionID
+    sessionID: sessionID
   })
 
   // visitor.pageview("/", "http://e-sql.com", "Home Page").send();
@@ -45,7 +47,7 @@ router.get('/contact', (req, res) => {
     errors: {},
     csrfToken: req.csrfToken(),
     uuid: req.uuid, //n8 uuid added
-    formIDCustom: "contact",
+    formIDCustom: '100',
     sessionID: sessionID
   })
 })
@@ -64,15 +66,15 @@ router.post('/contact', [
     const errors = validationResult(req)
     if(errors.isEmpty()){
       // console.log("Errors is empty : ", errors.isEmpty())
-      // visitor.event("Event Category", "Event Action").send()
     }
     if (!errors.isEmpty()) {
+      visitor.event("Event Category", "validationFailEvent").send()
       return res.render('contact', {
         data: req.body,
         errors: errors.mapped(),
         csrfToken: req.csrfToken(),
         uuid: req.uuid, //n8 uuid added
-        formIDCustom: "contact_fail",
+        formIDCustom: '100',
         sessionID: sessionID
       })
     }
