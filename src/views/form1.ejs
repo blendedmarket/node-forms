@@ -1,0 +1,43 @@
+<!-- views/contact.ejs -->
+<head>    <meta charset="utf-8">
+    <title>FOrm 1</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+<!-- <script>  var dataLayer = [{'sessionUUID':  '<%= sessionID %>', 'formIDCustom': "<%= 	formIDCustom %>" }] </script> -->
+  <%- include('head/dataLayer'); %>
+  <%- include('head/GTM'); %>
+</head>
+    <%- include('head/GTMNoScript'); %>
+<div class="form-header">
+  <% if (Object.keys(errors).length === 0) { %>
+    <h2>Send us a message</h2>
+  <% } else { %>
+    <h2 class="errors-heading">Oops, please correct the following:</h2>
+    <ul class="errors-list">
+      <% Object.values(errors).forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+</div>
+<form id="Form_1" class="contactForm" method="post" action="/form1" novalidate>
+  <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="hidden" name="_uuid" value="<%= uuid %>">
+    <input type="hidden" name="_formIDCustom" value="<%= formIDCustom %>">
+    <label for="message">Name</label>
+    <textarea class="input" id="name" name="name" rows="4" autofocus><%= data.message %></textarea>
+    <% if (errors.message) { %>
+      <div class="error"><%= errors.message.msg %></div>
+    <% } %>
+  </div>
+  <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
+    <label for="email">Email</label>
+    <input class="input" id="email" name="email" type="email" value="<%= data.email %>" />
+    <% if (errors.email) { %>
+      <div class="error"><%= errors.email.msg %></div>
+    <% } %>
+  </div>
+  <div class="form-actions">
+    <button class="btn" type="submit" >Send</button>
+  </div>
+</form>
