@@ -47,7 +47,7 @@ router.get('/contact', (req, res) => {
     errors: {},
     csrfToken: req.csrfToken(),
     uuid: req.uuid, //n8 uuid added
-    formIDCustom: '100',
+    formIDCustom: '1',
     sessionID: sessionID
   })
 })
@@ -74,7 +74,7 @@ router.post('/contact', [
         errors: errors.mapped(),
         csrfToken: req.csrfToken(),
         uuid: req.uuid, //n8 uuid added
-        formIDCustom: '100',
+        formIDCustom: '1',
         sessionID: sessionID
       })
     }
@@ -117,7 +117,7 @@ router.post('/contact', [
             // console.log("Errors is empty : ", errors.isEmpty())
           }
           if (!errors.isEmpty()) {
-            visitor.event("Event Category", "validationFailEvent").send()
+            visitor.event("form1 validation", "validationFailEvent").send()
             return res.render('form1', {
               data: req.body,
               errors: errors.mapped(),
@@ -166,7 +166,7 @@ router.post('/contact', [
                     // console.log("Errors is empty : ", errors.isEmpty())
                   }
                   if (!errors.isEmpty()) {
-                    visitor.event("Event Category", "validationFailEvent").send()
+                    visitor.event("form2 validation", "validationFailEvent").send()
                     return res.render('form2', {
                       data: req.body,
                       errors: errors.mapped(),

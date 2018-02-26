@@ -9,7 +9,7 @@
     <%- include('head/GTMNoScript'); %>
 <div class="form-header">
   <% if (Object.keys(errors).length === 0) { %>
-    <h2>Send us a message</h2>
+    <h2>Form #1</h2>
   <% } else { %>
     <h2 class="errors-heading">Oops, please correct the following:</h2>
     <ul class="errors-list">
@@ -20,14 +20,14 @@
   <% } %>
 </div>
 <form id="Form_1" class="contactForm" method="post" action="/form1" novalidate>
-  <div class="form-field <%= errors.message ? 'form-field-invalid' : '' %>">
+  <div class="form-field <%= errors.name ? 'form-field-invalid' : '' %>">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <input type="hidden" name="_uuid" value="<%= uuid %>">
     <input type="hidden" name="_formIDCustom" value="<%= formIDCustom %>">
-    <label for="message">Name</label>
-    <textarea class="input" id="name" name="name" rows="4" autofocus><%= data.message %></textarea>
-    <% if (errors.message) { %>
-      <div class="error"><%= errors.message.msg %></div>
+    <label for="name">Name</label>
+    <textarea class="input" id="name" name="name" rows="4" autofocus><%= data.name %></textarea>
+    <% if (errors.name) { %>
+      <div class="error"><%= errors.name.msg %></div>
     <% } %>
   </div>
   <div class="form-field <%= errors.email ? 'form-field-invalid' : '' %>">
